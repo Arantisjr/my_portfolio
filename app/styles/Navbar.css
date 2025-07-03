@@ -4,6 +4,7 @@
     justify-content: space-between;
     padding: 1rem;
     border-bottom: .5px solid hsl(240, 4%, 80%);
+    
 }
 .nav_main_container .nav_logo{
     font-weight: bold;

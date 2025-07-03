@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import '../styles/Navbar.css';
 import { CiDark, CiLight } from 'react-icons/ci';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Theme = 'light' | 'dark' | 'system';
 
@@ -12,7 +12,8 @@ const Navbar = () => {
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  // Apply the correct theme to the <html> tag
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   const applyTheme = (selectedTheme: Theme) => {
     setTheme(selectedTheme);
     localStorage.setItem('theme', selectedTheme);
@@ -28,13 +29,11 @@ const Navbar = () => {
     }
   };
 
-  // On mount, check stored theme or system preference
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme') as Theme | null;
     const initialTheme = storedTheme || 'system';
     applyTheme(initialTheme);
 
-    // Listen for system theme changes (only if using system theme)
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleSystemChange = (e: MediaQueryListEvent) => {
       if (theme === 'system') {
@@ -50,7 +49,29 @@ const Navbar = () => {
     };
   }, [theme]);
 
-  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setDropdownOpen(false);
+      }
+    };
+
+    if (dropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownOpen]);
+
+  const toggleDropdown = () => setDropdownOpen((prev) => !prev);
 
   return (
     <div className="nav_main_container">
@@ -65,14 +86,14 @@ const Navbar = () => {
         </ul>
       </div>
 
-      <div className="theme-container">
+      <div className="theme-container" ref={dropdownRef}>
         <div className="theme-icon" onClick={toggleDropdown}>
           {resolvedTheme === 'dark' ? <CiDark size={24} /> : <CiLight size={24} />}
         </div>
         {dropdownOpen && (
           <div className="theme-dropdown">
             <div className="theme-option" onClick={() => applyTheme('light')}>
-              {theme === 'light' &&  <span>✓ </span>}Light
+              {theme === 'light' && <span>✓ </span>}Light
             </div>
             <div className="theme-option" onClick={() => applyTheme('dark')}>
               {theme === 'dark' && <span>✓ </span>}Dark
