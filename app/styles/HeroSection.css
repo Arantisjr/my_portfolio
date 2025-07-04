@@ -1,0 +1,14 @@
+.hero_main_container{
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: column;
+    align-items: start;
+    margin-top: var(--margin_top);
+    color: var(--text-color);
+    font-weight: 600;
+}
+.hero_main_container .nav_title{
+    font-size: 22px;
+    color:var(--bold-text) ;
+
+}

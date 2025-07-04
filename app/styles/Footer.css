@@ -1,0 +1,13 @@
+.footer_main_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    font-size: 20px;
+}
+.footer_main_container .footer_links ul{
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    align-items: center;
+}

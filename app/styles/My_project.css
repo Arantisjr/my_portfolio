@@ -1,0 +1,39 @@
+.my_project{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: column;
+    background-color: var(--white);
+    padding: 5px;
+    border-radius: 1rem;
+    box-shadow: 1px 1px rgba(0,0,0,0.1);
+}
+.my_project .my_project_up_div{
+    padding: 5rem;
+    background-color: var(--bg-color);
+    border-radius: 1rem;
+    box-shadow: 1px 1px rgba(0,0,0,0.1);
+    width: 100%;
+    height: 11rem;
+    display: flex;
+    align-items: center;
+    /* align-content: center; */
+
+}
+.my_project_up_div .project_icon_div{
+    background-color: var(--white);
+    border-radius: 1rem;
+    padding: 1rem;
+    width: 6rem;
+    padding-left: 2rem;
+    margin-left: 1.5rem;
+ 
+
+}
+
+.my_project .project_text{
+    display: flex;
+    gap: .5rem;
+    flex-direction: column;
+    align-items: start;
+}
