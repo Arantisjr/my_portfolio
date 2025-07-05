@@ -1,11 +1,12 @@
 import Writting_nav from "../components/Writting_nav";
-import Projects from "./Projects";
+import Services from "./Services";
 
 export default function Home() {
   return (
    <>
-   <Writting_nav link_nav={'Projects!'} description_nav={`What i have been cooking lately. `} />
-   <Projects />
+   <Writting_nav link_nav={'Services'} description_nav={`What i can offer. `} />
+   <Services />
+
     </>
   );
 }
