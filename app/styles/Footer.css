@@ -3,7 +3,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    font-size: 20px;
+    font-size: 18px;
+     border-top: .5px solid hsl(240, 4%, 80%);
 }
 .footer_main_container .footer_links ul{
     display: flex;

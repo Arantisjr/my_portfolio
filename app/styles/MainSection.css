@@ -4,6 +4,7 @@
     /* align-items: center; */
     gap: 2rem;
     margin-top: var(--margin_top);
+    margin-bottom: var(--margin_top);
 
 }
 .first_container .nav_main_section{
@@ -20,6 +21,6 @@
 .first_container .main_main_section{
     display: grid;
     align-items: center;
-    gap: 1.6rem;
+    gap: 2rem;
     grid-template-columns: 1fr 1fr;
 }

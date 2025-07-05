@@ -4,13 +4,16 @@
   --bg-color: hsl(0, 0%, 95%);
   --bold-text: hsl(240, 6%, 10%);
   --text-color: hsl(240, 4%, 46%);
+  --border-color:hsla(240, 4%, 46%, 0.1); 
   --white: hsl(0, 0%, 100%);
   --margin_top: 6rem;
+  --border-radius: .5rem;
 }
 
 [data-theme='dark'] {
   --bg-color: hsl(240, 4%, 5%);
   --bold-text: hsl(0, 0%, 95%);
+  --border-color:hsla(240, 4%, 100%, 0.5); 
   --text-color: hsl(0, 0%, 80%);
   --white: hsl(0, 0%, 0%);
 }

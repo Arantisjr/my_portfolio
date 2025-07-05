@@ -75,7 +75,10 @@ const Navbar = () => {
 
   return (
     <div className="nav_main_container">
+      <Link href={'/'}>
+      
       <div className="nav_logo">&#123;A_T&#125;</div>
+      </Link>
       <div className="nav_links">
         <ul>
           <Link href="/writings"><li>Writings</li></Link>

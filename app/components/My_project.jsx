@@ -16,7 +16,7 @@ const My_project = ({proj_link,proj_logo,proj_name, description}) => {
         <div className="project_text">
             <p className='text-xl font-bold text-[var(--bold-text)]'> {proj_name}</p>
 
-           <p>
+           <p className='text-[var(--text-color)] '>
             {description}
             </p> 
      
