@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import '../styles/Navbar.css';
 import { CiDark, CiLight } from 'react-icons/ci';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import { useEffect, useRef, useState } from 'react';
 
 type Theme = 'light' | 'dark' | 'system';
@@ -11,8 +12,11 @@ const Navbar = () => {
   const [theme, setTheme] = useState<Theme>('system');
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   const applyTheme = (selectedTheme: Theme) => {
     setTheme(selectedTheme);
@@ -43,43 +47,47 @@ const Navbar = () => {
       }
     };
 
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+
     mediaQuery.addEventListener('change', handleSystemChange);
     return () => {
       mediaQuery.removeEventListener('change', handleSystemChange);
+      window.removeEventListener('resize', checkIfMobile);
     };
   }, [theme]);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setDropdownOpen(false);
+      }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
       }
     };
 
-    if (dropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [dropdownOpen]);
+  }, []);
 
   const toggleDropdown = () => setDropdownOpen((prev) => !prev);
+  const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
 
   return (
     <div className="nav_main_container">
       <Link href={'/'}>
-      
-      <div className="nav_logo">&#123;A_T&#125;</div>
+        <div className="nav_logo">&#123;A_T&#125;</div>
       </Link>
-      <div className="nav_links">
+
+      {/* Desktop Navigation */}
+      <div className={`nav_links ${isMobile ? 'mobile-hidden' : ''}`}>
         <ul>
           <Link href="/writings"><li>Writings</li></Link>
           <Link href="/projects"><li>Projects</li></Link>
@@ -89,24 +97,49 @@ const Navbar = () => {
         </ul>
       </div>
 
-      <div className="theme-container" ref={dropdownRef}>
-        <div className="theme-icon" onClick={toggleDropdown}>
-          {resolvedTheme === 'dark' ? <CiDark size={24} /> : <CiLight size={24} />}
-        </div>
-        {dropdownOpen && (
-          <div className="theme-dropdown">
-            <div className="theme-option" onClick={() => applyTheme('light')}>
-              {theme === 'light' && <span>✓ </span>}Light
-            </div>
-            <div className="theme-option" onClick={() => applyTheme('dark')}>
-              {theme === 'dark' && <span>✓ </span>}Dark
-            </div>
-            <div className="theme-option" onClick={() => applyTheme('system')}>
-              {theme === 'system' && <span>✓ </span>}System
-            </div>
+      {/* Mobile Controls */}
+      <div className="mobile-controls">
+        {isMobile && (
+          <div className="mobile-menu-button" onClick={toggleMobileMenu}>
+            {mobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
           </div>
         )}
+        
+        <div className="theme-container" ref={dropdownRef}>
+          <div className="theme-icon" onClick={toggleDropdown}>
+            {resolvedTheme === 'dark' ? <CiDark size={20} /> : <CiLight size={20} />}
+          </div>
+          {dropdownOpen && (
+            <div className="theme-dropdown">
+              <div className="theme-option" onClick={() => applyTheme('light')}>
+                {theme === 'light' && <span>✓ </span>}Light
+              </div>
+              <div className="theme-option" onClick={() => applyTheme('dark')}>
+                {theme === 'dark' && <span>✓ </span>}Dark
+              </div>
+              <div className="theme-option" onClick={() => applyTheme('system')}>
+                {theme === 'system' && <span>✓ </span>}System
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+
+      {/* Mobile Navigation Menu */}
+      {isMobile && (
+        <div 
+          ref={mobileMenuRef}
+          className={`mobile-nav-links ${mobileMenuOpen ? 'open' : ''}`}
+        >
+          <ul>
+            <Link href="/writings" onClick={toggleMobileMenu}><li>Writings</li></Link>
+            <Link href="/projects" onClick={toggleMobileMenu}><li>Projects</li></Link>
+            <Link href="/education" onClick={toggleMobileMenu}><li>Education</li></Link>
+            <Link href="/links" onClick={toggleMobileMenu}><li>Links</li></Link>
+            <Link href="/services" onClick={toggleMobileMenu}><li>Services</li></Link>
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
