@@ -6,9 +6,12 @@ import Blogs from './components/Blogs';
 export default function Home() {
   return (
    <>
+   <div className="container">
+
    <HeroSection />
    <MainSection />
    <Blogs />
+   </div>
    </>
   );
 }

@@ -5,7 +5,7 @@ import { LuMail } from "react-icons/lu";
 import Link from 'next/link';
 const My_link = () => {
   return (
-    <div className='flex flex-col gap-6 item-center mb-[20rem] '>
+    <div className='flex flex-col gap-6 item-center mb-[20rem] mt-[5rem] '>
       <div className="link_main_container">
         {
           my_socials.map((s) => <Socials {...s} key={s.id} />)  // Here, we're passing each social icon and name as props to the Socials component
