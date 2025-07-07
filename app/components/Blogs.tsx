@@ -1,6 +1,7 @@
 import { GoArrowUpRight } from "react-icons/go";
 import "../styles/Blog.css";
 import Link from "next/link";
+import GetWrittings from "./GetWrittings";
 const Blogs = () => {
   return (
     <>
@@ -17,6 +18,8 @@ const Blogs = () => {
           </p>
         </div>
         <div className="blog_main_div">
+
+          <GetWrittings />
             
         </div>
       </div>
