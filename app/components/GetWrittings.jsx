@@ -8,7 +8,7 @@ const GetWrittings = () => {
     const[blogs, setBlogs] = useState([]);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:5000/writings")
+        fetch("https://portfolio-backend-gy59.onrender.com/writings")
         .then((res) => res.json())
         .then((data) => {
             setBlogs(data);

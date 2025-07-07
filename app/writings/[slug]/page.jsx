@@ -11,7 +11,7 @@ export default function WritingPage({ params }) {
     useEffect(() => {
         const fetchWriting = async () => {
             try {
-                const response = await fetch(`http://127.0.0.1:5000/writings/${params.slug}`);
+                const response = await fetch(`https://portfolio-backend-gy59.onrender.com/writings/${params.slug}`);
                 if (!response.ok) {
                     throw new Error('Writing not found');
                 }
