@@ -24,3 +24,17 @@
     gap: 2rem;
     grid-template-columns: 1fr 1fr;
 }
+
+@media (max-width: 768px) {
+  .first_container {
+    gap: 1.5rem; /* Reduced gap for mobile */
+    padding: 1rem;
+  }
+
+  .main_main_section {
+    grid-template-columns: 1fr !important; /* Force single column */
+    gap: 1.5rem; /* Adjusted gap for mobile */
+  }
+
+ 
+}

@@ -6,7 +6,7 @@ export default function Home() {
   return (
    <>
    <Writting_nav link_nav={'Education'} description_nav={"Here is my Software Engineering Journey. "} />
-   <div className="mt-[6rem] mb-[6rem]">
+   <div className="mt-[6rem] mb-[6rem] p-[1rem]">
    {
 educationData.map((e) => <Education {...e} key={e.id} />)
    }

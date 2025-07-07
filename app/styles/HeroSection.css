@@ -12,3 +12,8 @@
     color:var(--bold-text) ;
 
 }
+@media (max-width: 768px) {
+.hero_main_container{
+    padding: 1rem;
+}
+}

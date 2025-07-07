@@ -5,7 +5,7 @@ const Services = () => {
   return (
     <>
     
-    <div className='flex flex-col gap-[2rem] mb-[9rem] mt-[5rem]'>
+    <div className='flex flex-col gap-[2rem] mb-[9rem] mt-[5rem] p-[1rem]'>
       {
         my_services.map((s) => <My_services {...s} key={s.id} />)
       }

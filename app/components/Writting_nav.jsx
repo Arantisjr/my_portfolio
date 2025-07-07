@@ -1,7 +1,7 @@
 const Writting_nav = ({link_nav, description_nav}) => {
   return (
     <>
-      <div className="flex flex-col gap-3.5 mt-[9rem] ">
+      <div className="flex flex-col gap-3.5 mt-[9rem] p-[1rem] ">
         <p className="text-3xl font-bold text-[var(--bold-text)]">
           {link_nav}
           {/* Writings! */}

@@ -8,10 +8,20 @@
     /* padding: 10rem; */
 }
 .proj_main_div .more_proj{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
    text-align: center;
     border: 1px solid var(--border-color);
     background-color: var(--white);
     color: var(--bold-text);
     padding: 5rem;
     border-radius: var(--border-radius);
+}
+@media (max-width: 768px) {
+  .proj_main_div{
+    grid-template-columns: 1fr !important;
+    padding: 1rem;
+  }
 }

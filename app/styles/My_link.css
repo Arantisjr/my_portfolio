@@ -32,3 +32,9 @@
         opacity: 0.8;
 
 }
+@media (max-width: 768px) {
+    .link_main_container{
+        grid-template-columns: 1fr !important;
+        
+    }
+}
