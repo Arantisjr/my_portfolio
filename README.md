@@ -72,7 +72,7 @@ The blog section features articles about:
 
 ## 🚀 Deployment
 
-This project is deployed on [Render](https://render.com). The live version is available at: [https://arantech.onrender.com](www.arantech.com)
+This project is deployed on [Render](https://render.com). The live version is available at: [https://arantech.onrender.com](https://arantech.onrender.com)
 
 ## 📄 License
 
