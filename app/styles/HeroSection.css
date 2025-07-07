@@ -42,7 +42,7 @@
   text-align: center;
   transition: all 0.3s ease;
   border: 2px solid var(--border-color);
-  width: 11rem;
+  width: 12rem;
   transition: transform 0.3 ease-in-out;
 }
 
