@@ -2,7 +2,7 @@ import { TypingName } from "./TypingName";
 import Link from "next/link";
 import Image from "next/image";
 import '../styles/HeroSection.css';
-import profileImage from '../../public/gojo2.jpeg';
+import profileImage from '../../public/AJ.png';
 
 const HeroSection = () => {
   // Replace this with your actual Google Drive shareable link
