@@ -4,10 +4,10 @@ import { prisma } from '@/lib/prisma'
 // GET /api/writings/[id] - Get single writing
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params
+    const { id } = await params
     
     const writing = await prisma.writing.findUnique({
       where: { id }
@@ -33,10 +33,10 @@ export async function GET(
 // PUT /api/writings/[id] - Update writing
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params
+    const { id } = await params
     const body = await request.json()
     const { title, content, excerpt, slug, published } = body
     
@@ -86,10 +86,10 @@ export async function PUT(
 // DELETE /api/writings/[id] - Delete writing
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params
+    const { id } = await params
     
     // Check if writing exists
     const existingWriting = await prisma.writing.findUnique({
