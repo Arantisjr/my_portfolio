@@ -10,7 +10,7 @@ const GetWrittings = () => {
 
   useEffect(() => {
     // Fetch from your new Next.js API
-    fetch("/api/writings?published=true")
+    fetch("/api/writings")
       .then((res) => {
         if (!res.ok) {
           throw new Error('Failed to fetch writings');
@@ -54,7 +54,7 @@ const GetWrittings = () => {
             <Link href={`/writings/${w.slug}`} key={w.id} className="talks">
               <div className='talk'>
                 <p className='font-bold'>{w.title}</p>
-                {w.excerpt && <p className="excerpt">{w.excerpt}</p>}
+                {/* {w.excerpt && <p className="excerpt">{w.excerpt}</p>} */}
                 <hr />
                 <div className="date_min">
                   <p>{new Date(w.createdAt).toLocaleDateString()}</p>

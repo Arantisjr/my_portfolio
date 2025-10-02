@@ -1,4 +1,3 @@
-
 "use client"; // Required for client-side interactivity
 
 import { useState } from 'react';
@@ -10,17 +9,21 @@ export default function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-
+    
     setStatus('Sending...');
 
     try {
-      const response = await fetch('/api/send-email', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          access_key: ' 32df44da-61b7-4412-88ca-28e1c0dbfd96', // Replace with your Web3Forms access key
+          name: formData.get('name'),
+          email: formData.get('email'),
+          message: formData.get('message'),
+        }),
       });
 
       const result = await response.json();

@@ -1,13 +1,13 @@
+version: '3.8'
+
 services:
-  client:
+  web:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: Arantis_portfolio
     ports:
-      - 3000:3000
+      - "3000:3000"
     environment:
-      - NODE_ENV=development
-      # - NEXT_PUBLIC_API_URL=http://localhost:5000
-    volumes:
-      - .:/app
-      - /app/node_modules
+      - NODE_ENV=production
+    restart: unless-stopped
